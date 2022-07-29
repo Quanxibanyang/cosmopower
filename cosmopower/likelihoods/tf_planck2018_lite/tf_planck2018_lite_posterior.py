@@ -295,12 +295,9 @@ class tf_planck2018_lite_posterior:
         
 
         ### chi2 computation
-
-        mu_p = np.mean(self.X_data)
-        #the original mean of the likelihood
         
 
-        delta_p = tf.subtract(mu_p, X_model)
+        delta_p = tf.subtract(X_model,mu_p)
         #the discrepancy between the neural net prediction 
         #and the original mean of the likelihood
         
