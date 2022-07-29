@@ -297,12 +297,12 @@ class tf_planck2018_lite_posterior:
         ### chi2 computation
         
 
-        delta_p = tf.subtract(X_model,mu_p)
+        delta_p = tf.subtract(X_model,X_data)
         #the discrepancy between the neural net prediction 
         #and the original mean of the likelihood
         
 
-        Xi_p = tf.subtract(self.X_data, mu_p)
+        Xi_p = tf.subtract(self.X_data, X_data)
         #the difference between the data and the mean of the likelihood
         
 
@@ -335,7 +335,7 @@ class tf_planck2018_lite_posterior:
         
         #get the shape of variables
         print(np.shape(X_model))
-        print(np.shape(mu_p))
+        print(np.shape(X_data))
         print(np.shape(delta_p))
         print(np.shape(Xi_p))
         print(np.shape(delta_bar))
