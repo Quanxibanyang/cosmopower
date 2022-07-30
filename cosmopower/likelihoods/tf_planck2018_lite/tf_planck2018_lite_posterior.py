@@ -293,8 +293,10 @@ class tf_planck2018_lite_posterior:
         # final theory prediction
         X_model = tf.transpose(tf.divide(Cl_bin, tf.square(cal)))
         
+### chi2 computation
 
-        ### chi2 computation
+        #mu_p = np.mean(self.X_data)
+        #the original mean of the likelihood
         
 
         delta_p = tf.subtract(X_model,self.X_data)
@@ -302,11 +304,11 @@ class tf_planck2018_lite_posterior:
         #and the original mean of the likelihood
         
 
-        #Xi_p = tf.subtract(self.X_data, X_model)
+        Xi_p = tf.subtract(X_model,self.X_data)
         #the difference between the data and the mean of the likelihood
         
 
-        delta_bar = tf.reduce_mean(delta_p)
+        delta_bar = tf.reduce_mean(delta_p,axis=0)
         #(eq.4)
         #!not sure about the dimesion, so not sure about the correct function to 
         # calculate the mean
@@ -317,12 +319,9 @@ class tf_planck2018_lite_posterior:
         #!not sure about the format of data
         #Here only need those parameters data
         
-        
         diff = tf.subtract(delta_p, tf.transpose(delta_bar))
         Sig_pro = tf.matmul(diff,tf.transpose(diff))
-
-        #Sig_pro = tf.matmul(tf.subtract(delta_p, delta_bar),
-         #                   tf.transpose(tf.subtract(delta_p, delta_bar)))
+        
         #the matrix product inside the summation of Sigma
         
 
@@ -339,21 +338,21 @@ class tf_planck2018_lite_posterior:
         #get the shape of variables
         print(np.shape(X_model))
         print(np.shape(self.X_data))
+        #print(np.shape(mu_p))
         print(np.shape(delta_p))
+        print(np.shape(Xi_p))
         print(np.shape(delta_bar))
         print(np.shape(Cov))
+        print(np.shape(diff))
         print(np.shape(Sig_pro))
         print(np.shape(Sigma))
-        
-        #see what matrix we got
-       
 
 
         Psi = tf.transpose(tf.add(Cov, Sigma))
         #(eq.8)
         
 
-        diff = tf.subtract(delta_p, delta_bar)
+        diff = tf.subtract(Xi_p, delta_bar)
         chi2 = tf.matmul(Psi, tf.transpose(diff))
         chi2 = tf.matmul(diff, chi2)
 
