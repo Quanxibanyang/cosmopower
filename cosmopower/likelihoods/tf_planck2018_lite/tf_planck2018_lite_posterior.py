@@ -302,7 +302,7 @@ class tf_planck2018_lite_posterior:
         #and the original mean of the likelihood
         
 
-        Xi_p = tf.subtract(self.X_data, X_model)
+        #Xi_p = tf.subtract(self.X_data, X_model)
         #the difference between the data and the mean of the likelihood
         
 
@@ -318,7 +318,10 @@ class tf_planck2018_lite_posterior:
         #Here only need those parameters data
         
         
-        Sig_pro = tf.matmul(tf.subtract(delta_p, delta_bar),
+        diff = tf.subtract(delta_p, tf.transpose(delta_bar))
+        Sig_pro = tf.matmul(tf.transpose(diff),diff)
+        
+        #Sig_pro = tf.matmul(tf.subtract(delta_p, delta_bar),
                             tf.transpose(tf.subtract(delta_p, delta_bar)))
         #the matrix product inside the summation of Sigma
         
@@ -344,8 +347,7 @@ class tf_planck2018_lite_posterior:
         print(np.shape(Sigma))
         
         #see what matrix we got
-        print(Cov)
-        print(Sig_pro)
+       
 
 
         Psi = tf.transpose(tf.add(Cov, Sigma))
