@@ -340,7 +340,6 @@ class tf_planck2018_lite_posterior:
         print(np.shape(X_model))
         print(np.shape(self.X_data))
         print(np.shape(delta_p))
-        print(np.shape(Xi_p))
         print(np.shape(delta_bar))
         print(np.shape(Cov))
         print(np.shape(Sig_pro))
