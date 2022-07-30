@@ -322,7 +322,7 @@ class tf_planck2018_lite_posterior:
         Sig_pro = tf.matmul(tf.transpose(diff),diff)
         
         #Sig_pro = tf.matmul(tf.subtract(delta_p, delta_bar),
-                            tf.transpose(tf.subtract(delta_p, delta_bar)))
+         #                   tf.transpose(tf.subtract(delta_p, delta_bar)))
         #the matrix product inside the summation of Sigma
         
 
