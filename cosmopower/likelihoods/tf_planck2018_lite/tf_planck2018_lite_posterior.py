@@ -320,8 +320,7 @@ class tf_planck2018_lite_posterior:
         
         diff = tf.subtract(delta_p, tf.transpose(delta_bar))
         Sig_pro = tf.matmul(tf.transpose(diff),diff)
-        Sig_pro = get_inverse_covmat(Sig_pro)
-        
+
         #Sig_pro = tf.matmul(tf.subtract(delta_p, delta_bar),
          #                   tf.transpose(tf.subtract(delta_p, delta_bar)))
         #the matrix product inside the summation of Sigma
