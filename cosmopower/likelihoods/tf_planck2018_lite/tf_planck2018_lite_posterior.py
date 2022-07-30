@@ -342,6 +342,10 @@ class tf_planck2018_lite_posterior:
         print(np.shape(Cov))
         print(np.shape(Sig_pro))
         print(np.shape(Sigma))
+        
+        #see what matrix we got
+        print(Cov)
+        print(Sig_pro)
 
 
         Psi = tf.transpose(tf.add(Cov, Sigma))
