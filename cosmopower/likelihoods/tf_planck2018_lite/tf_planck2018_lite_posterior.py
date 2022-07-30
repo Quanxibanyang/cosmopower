@@ -319,8 +319,8 @@ class tf_planck2018_lite_posterior:
         #!not sure about the format of data
         #Here only need those parameters data
         
-        differ = tf.subtract(delta_p, tf.transpose(delta_bar))
-        Sig_pro = tf.matmul(differ,tf.transpose(differ))
+        diff = tf.subtract(delta_p, tf.transpose(delta_bar))
+        Sig_pro = tf.matmul(diff,tf.transpose(diff))
         
         #the matrix product inside the summation of Sigma
         
@@ -346,7 +346,7 @@ class tf_planck2018_lite_posterior:
         print(np.shape(diff))
         print(np.shape(Sig_pro))
         print(np.shape(Sigma))
-        print(np.shape(differ))
+  
 
 
         Psi = tf.transpose(tf.add(Cov, Sigma))
