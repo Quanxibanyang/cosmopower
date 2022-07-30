@@ -353,7 +353,7 @@ class tf_planck2018_lite_posterior:
         #(eq.8)
         
 
-        diff = tf.subtract(Xi_p, delta_bar)
+        diff = tf.subtract(delta_p, delta_bar)
         chi2 = tf.matmul(Psi, tf.transpose(diff))
         chi2 = tf.matmul(diff, chi2)
 
