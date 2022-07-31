@@ -320,7 +320,7 @@ class tf_planck2018_lite_posterior:
         #Here only need those parameters data
         
         diff = tf.subtract(delta_p, delta_bar)
-        Sig_pro = tf.matmul(tf.transpose(diff),diff)
+        Sig_pro = tf.matmul(diff,tf.transpose(diff))
         
         
         #the matrix product inside the summation of Sigma
@@ -355,8 +355,9 @@ class tf_planck2018_lite_posterior:
         
 
         diff = tf.subtract(Xi_p, delta_bar)
-        chi2 = tf.matmul(Psi, tf.transpose(diff))
-        chi2 = tf.matmul(diff, chi2)
+        chi2 = tf.matmul(tf.transpose(diff),Psi)
+        chi2 = tf.matmul(chi2, diff)
+        print(np.shape(chi2))
 
         chi2 = tf.linalg.diag_part(chi2)
 
