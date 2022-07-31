@@ -299,7 +299,7 @@ class tf_planck2018_lite_posterior:
         #the original mean of the likelihood
         
 
-        delta_p = tf.subtract(X_model,self.X_data)
+        delta_p = tf.transpose(tf.subtract(X_model,self.X_data))
         #the discrepancy between the neural net prediction 
         #and the original mean of the likelihood
         
