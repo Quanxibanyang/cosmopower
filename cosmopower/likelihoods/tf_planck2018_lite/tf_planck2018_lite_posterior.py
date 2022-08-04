@@ -271,6 +271,7 @@ class tf_planck2018_lite_posterior:
         parameters_table = self.from_parameters_tensor_to_table(parameters)
         cal = parameters_table.lookup(tf.constant(['A_planck']))
         print(np.shape(cal))
+        print(cal)
         cosmo_params = tf.transpose(parameters_table.lookup(tf.constant(self.tt_emu_model.parameters)))
 
         # sourcing C_ells from CosmoPower
