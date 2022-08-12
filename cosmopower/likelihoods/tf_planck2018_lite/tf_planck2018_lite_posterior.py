@@ -340,17 +340,8 @@ class tf_planck2018_lite_posterior:
         
         
         #get the shape of variables
-        print(np.shape(X_model))
-        print(np.shape(self.X_data))
-        #print(np.shape(mu_p))
-        print(np.shape(delta_p))
-        print(np.shape(Xi_p))
-        print(np.shape(delta_bar))
-        print(np.shape(Cov))
-        print(np.shape(dif))
-        print(np.shape(Sig_pro))
-        print(np.shape(Sigma))
-  
+        print(np.shape(Cl_bin))
+       
 
 
         Psi = tf.transpose(tf.add(Cov, Sigma))
@@ -360,7 +351,6 @@ class tf_planck2018_lite_posterior:
         diff = tf.subtract(delta_p, tf.transpose(delta_bar))
         chi2 = tf.matmul(tf.transpose(diff),Psi)
         chi2 = tf.matmul(chi2, diff)
-        print(np.shape(chi2))
 
         chi2 = tf.linalg.diag_part(chi2)
 
